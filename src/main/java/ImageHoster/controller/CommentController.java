@@ -44,8 +44,6 @@ public class CommentController {
     comment.setText(text);
     commentService.createComment(comment);
     model.addAttribute("image", image);
-    model.addAttribute("tags", image.getTags());
-    model.addAttribute("comments", image.getComments());
     return "redirect:/images/" + imageId + "/" + title;
   }
 }
