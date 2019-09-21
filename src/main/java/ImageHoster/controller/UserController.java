@@ -45,11 +45,11 @@ public class UserController {
     /*Before registering user the valid password check has been added. Register user only if user password contains at least 1 alphabet, 1 number and 1 special character*/
     @RequestMapping(value = "users/registration", method = RequestMethod.POST)
     public String registerUser(User user, Model model) {
-        String passwordTypeError = "Password must contain at least 1 alphabet, 1 number & 1 special character";
+        String passwordTypeError = "Password must contain atleast 1 alphabet, 1 number & 1 special character";
         String password = user.getPassword();
         if (isValidPassword(password)) {
           userService.registerUser(user);
-          return "redirect:/users/login";
+          return "users/login";
         } else {
           User inValidUser = new User();
           model.addAttribute("User", inValidUser);
