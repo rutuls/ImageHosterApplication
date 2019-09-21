@@ -40,6 +40,21 @@ public class User {
     //FetchType is LAZY
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Image> images = new ArrayList<>();
+    
+    // comment table references to user table
+    // The comment table foreignkey user_id references to user table primary key id
+    // cascade = CascadeType.REMOVE specifies that if record in User table is deleted then all the records in comment table associated to particular record will be deleted.
+    //FetchType is LAZY
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
+
+    public List<Comment> getComments() {
+      return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+      this.comments = comments;
+    }
 
     public Integer getId() {
         return id;

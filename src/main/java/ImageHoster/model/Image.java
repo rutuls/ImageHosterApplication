@@ -50,6 +50,21 @@ public class Image {
     //Since the mapping is Many to Many, a new table will be generated containing the two columns both referencing to the primary key of both the tables ('images', 'tags')
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Tag> tags = new ArrayList<>();
+    
+    // comment table references to image table
+    // The comment table foreignkey image_id references to image table primary key id
+    // cascade = CascadeType.REMOVE specifies that if record in image table is deleted then all the records in comment table associated to particular image will be deleted.
+    //FetchType is LAZY
+    @OneToMany(mappedBy = "image", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
+
+    public List<Comment> getComments() {
+      return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+      this.comments = comments;
+    }
 
     public Image() {
     }
